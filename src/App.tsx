@@ -1,16 +1,29 @@
-import { useState } from "react";
+// Import React Router Dom
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  Route,
+  RouterProvider,
+} from "react-router-dom";
 
-// Libaray UI
-import { Button, Center } from "@chakra-ui/react";
+// Import Components
+import Layouts from "./components/Layouts";
+import { Home } from "./pages";
+
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <>
+      <Route path="/" element={<Layouts />}>
+        <Route path="/">
+          <Route index element={<Home />} />
+        </Route>
+      </Route>
+    </>
+  )
+);
 
 function App() {
-  return (
-    <>
-      <Center>
-        <Button colorScheme="blue">Click</Button>
-      </Center>
-    </>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;
